@@ -35,4 +35,4 @@ Example: `curl -ivk --negotiate -u : https://host1.example.com:8886`
 
 3. Take Atlas configuration backup: Backup all the files under /etc/atlas/conf folder in your Atlas Metadata server. recently compiled the steps to backup and restore HBase and Solr data.
 
-[1] In Atlas versions earlier than 1.0, the HBase table is _atlas_titan_. In Atlas versions including and later than 1.0, the HBase table is _atlas_janus_. In HDP 2.x, the table would be _atlas_titan_, whereas in HDP 3.x, it would be _atlas_janus_.
+>[1] In Atlas versions earlier than 1.0, the HBase table is _atlas_titan_. In Atlas versions including and later than 1.0, the HBase table is _atlas_janus_. In HDP 2.x, the table would be _atlas_titan_, whereas in HDP 3.x, it would be _atlas_janus_.
