@@ -4,9 +4,9 @@ Atlas metadata is stored in the form of HBase tables (atlas_janus and ATLAS_ENTI
 ## Atlas backup:
 
 1. Backup Hbase tables:
-  1. Create a folder in HDFS and set hbase as its owner
-  2. Run the below commands as 'hbase' user with TGT (if Kerberos) to export HBase tables into HDFS directory from step 1.
-```
+- Create a folder in HDFS and set hbase as its owner
+- Run the below commands as 'hbase' user with TGT (if Kerberos) to export HBase tables into HDFS directory from step 1.
+```bash
 # hbase org.apache.hadoop.hbase.mapreduce.Export "atlas_janus" "/<folder>/atlas_janus"
 # hbase org.apache.hadoop.hbase.mapreduce.Export "ATLAS_ENTITY_AUDIT_EVENTS" "/<folder>/ATLAS_ENTITY_AUDIT_EVENTS"
 ```
