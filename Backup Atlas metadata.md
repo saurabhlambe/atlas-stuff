@@ -1,5 +1,5 @@
 # How to backup Atlas Metadata
-Atlas metadata is stored in the form of HBase tables (atlas_janus and ATLAS_ENTITY_AUDIT_EVENTS) and Solr collections (vertex_index, fulltext_index, and edge_index)
+Atlas metadata is stored in the form of HBase tables (atlas_janus or atlas_titan and ATLAS_ENTITY_AUDIT_EVENTS) and Solr collections (vertex_index, fulltext_index, and edge_index)
 
 ## Atlas backup:
 
