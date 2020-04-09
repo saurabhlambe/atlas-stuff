@@ -1,5 +1,5 @@
 # How to backup Atlas Metadata
-Atlas metadata is stored in the form of HBase tables (atlas_janus or atlas_titan and ATLAS_ENTITY_AUDIT_EVENTS) and Solr collections (vertex_index, fulltext_index, and edge_index)
+Atlas metadata is stored in the form of HBase tables (_atlas_janus_ or _atlas_titan_ and _ATLAS_ENTITY_AUDIT_EVENTS_) and Solr collections (_vertex_index_, _fulltext_index_, and _edge_index_)
 
 ## Atlas backup:
 
@@ -14,7 +14,7 @@ Atlas metadata is stored in the form of HBase tables (atlas_janus or atlas_titan
 Note: Above commands will backup the data from HBase table into HDFS.
 
 2. Backup Solr collections from Ambari Infra Solr:
-- In addition to HBase tables, Atlas data is stored in 3 Solr collections: vertex_index, edge_index and fulltext_index. These need to be backed up from Ambari Infra Solr.
+- In addition to HBase tables, Atlas data is stored in 3 Solr collections: _vertex_index_, _fulltext_index_, and _edge_index_. These need to be backed up from Ambari Infra Solr.
 - The backup command will backup Solr indexes and configurations for a specified collection. The backup command takes one copy from each shard for the indexes. For configurations, it backs up the configSet that was associated with the collection and metadata.
 
 Use following syntax to run Solr backup API using curl command:
