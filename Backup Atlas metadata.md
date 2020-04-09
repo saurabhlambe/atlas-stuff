@@ -1,5 +1,5 @@
 # How to backup Atlas Metadata
-Atlas metadata is stored in the form of HBase tables (_atlas_janus_ or _atlas_titan_ and _ATLAS_ENTITY_AUDIT_EVENTS_) and Solr collections (_vertex_index_, _fulltext_index_, and _edge_index_)
+Atlas metadata is stored in the form of HBase tables (_atlas_janus_ or _atlas_titan_[1] and _ATLAS_ENTITY_AUDIT_EVENTS_) and Solr collections (_vertex_index_, _fulltext_index_, and _edge_index_).
 
 ## Atlas backup:
 
@@ -34,3 +34,5 @@ Example: `curl -ivk --negotiate -u : https://host1.example.com:8886`
 - If you have multiple Solr instances, ensure you crete the Solr backup directories on all the instances. Else the backup will fail complaining that there should be a shared storage used for backup.
 
 3. Take Atlas configuration backup: Backup all the files under /etc/atlas/conf folder in your Atlas Metadata server. recently compiled the steps to backup and restore HBase and Solr data.
+
+[1] In Atlas versions earlier than 1.0, the HBase table is _atlas_titan_. In Atlas versions including and later than 1.0, the HBase table is _atlas_janus_. In HDP 2.x, the table would be _atlas_titan_, whereas in HDP 3.x, it would be _atlas_janus_.
