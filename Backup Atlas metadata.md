@@ -18,6 +18,8 @@ Note: Above commands will backup the data from HBase table into HDFS.
 - In addition to HBase tables, Atlas data is stored in 3 Solr collections: _vertex_index_, _fulltext_index_, and _edge_index_. These need to be backed up from Ambari Infra Solr.
 - The backup command will backup Solr indexes and configurations for a specified collection. The backup command takes one copy from each shard for the indexes. For configurations, it backs up the configSet that was associated with the collection and metadata.
 
+**Note:** the below backup commands will work only on Solr 6.1 and onward. Ambari 2.x has Solr 5.5 installed, so these won't work.
+
 Use following syntax to run Solr backup API using curl command:
 ```bash
 # http://<infra-solr-host:port>/solr/admin/collections?action=BACKUP&name=myBackupName&collection=<myCollectionName>&location=/path/to/my/shared/drive
