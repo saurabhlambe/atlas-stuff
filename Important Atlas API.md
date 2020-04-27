@@ -8,5 +8,5 @@ Note: this document is under progress.
 ```
 Example:
 ```
-http://c2218-node4.coelab.cloudera.com:21000/api/atlas/admin/metrics
+# curl -ikv --negotiate -u admin http://c4218-node3.coelab.cloudera.com:21000/api/atlas/admin/metrics
 ```
