@@ -7,6 +7,6 @@ Note: this document is under progress.
 /api/atlas/admin/metrics
 ```
 Example:
-```
-# curl -ikv --negotiate -u admin http://c4218-node3.coelab.cloudera.com:21000/api/atlas/admin/metrics
+```bash
+curl -ikv --negotiate -u admin http://`hostname -f`:21000/api/atlas/admin/metrics
 ```
