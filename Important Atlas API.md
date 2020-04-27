@@ -2,7 +2,7 @@ This document is a collection of all the important Atlas API needed to troublesh
 
 Note: this document is under progress.
 
-1. Fetch Atlas metrics
+#### Fetch Atlas metrics
 ```
 /api/atlas/admin/metrics
 ```
