@@ -1,6 +1,6 @@
 # Some important API/commands to fetch information and/or troubleshoot
 
-1. Fetch Atlas metrics
+#### Fetch Atlas metrics
 ```bash
 curl -u admin -X GET -H 'Content-Type: application/json' -H 'Cache-Control: no-cache' http://$(hostname -f):21000/api/atlas/admin/metrics
 ```
