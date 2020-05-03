@@ -12,6 +12,11 @@ curl -u admin -X GET -H 'Content-Type: application/json' -H 'Cache-Control: no-c
 
 2. Basic search type + tag:
 ```bash
+curl -u admin -X GET  --header 'Accept: application/json;charset=UTF-8' "http://$(hostname -f):21000/api/atlas/v2/search/basic?classification=<tag>&typeName=<entity-type>"
+```
+
+Example:
+```bash
 curl -u admin -X GET  --header 'Accept: application/json;charset=UTF-8' "http://$(hostname -f):21000/api/atlas/v2/search/basic?classification=NewTag&typeName=hive_column"
 ```
 
