@@ -40,9 +40,21 @@ curl -ivk --negotiate -u : "http://$(hostname -f):8886/solr/admin/collections?ac
 ```bash
 /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --describe --zookeeper `hostname -f`:2181 --topic ATLAS_HOOK
 ```
+> Expected result
+```bash
+/usr/hdp/current/kafka-broker/bin/kafka-topics.sh --describe --zookeeper `hostname -f`:2181 --topic ATLAS_HOOK
+Topic:ATLAS_HOOK	PartitionCount:1	ReplicationFactor:1	Configs:
+	Topic: ATLAS_HOOK	Partition: 0	Leader: 1001	Replicas: 1001	Isr: 1001
+```
 2. Describe ATLAS_ENTITIES topic:
 ```bash
 /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --describe --zookeeper `hostname -f`:2181 --topic ATLAS_ENTITIES
+```
+> Expected result
+```bash
+/usr/hdp/current/kafka-broker/bin/kafka-topics.sh --describe --zookeeper `hostname -f`:2181 --topic ATLAS_ENTITIES
+Topic:ATLAS_ENTITIES	PartitionCount:1	ReplicationFactor:1	Configs:
+	Topic: ATLAS_ENTITIES	Partition: 0	Leader: 1001	Replicas: 1001	Isr: 1001
 ```
 3. Describe _atlas_ consumer group (to check current consumer lag):
 * Without Kerberos:
@@ -61,5 +73,13 @@ curl -ivk --negotiate -u : "http://$(hostname -f):8886/solr/admin/collections?ac
 ```bash
 /usr/hdp/current/kafka-broker/bin/kafka-consumer-groups.sh  --bootstrap-server `hostname -f`:6667 --describe --group atlas --command-config cluster.config
 cat cluster.config
-security.inter.broker.protocol=SASL_PLAINTEXT
+security.protocol=SASL_PLAINTEXT
+```
+> Expected result
+```bash
+/usr/hdp/current/kafka-broker/bin/kafka-consumer-groups.sh  --bootstrap-server `hostname -f`:6667 --describe --group atlas --command-config cluster.config
+
+TOPIC           PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                     HOST            CLIENT-ID
+ATLAS_HOOK      0          12              12              0               consumer-1-367dc678-f9cd-4e8b-a0c7-0cc154a13b72 /172.25.36.16   consumer-1
+[2020-05-03 12:06:32,999] WARN [Principal=null]: TGT renewal thread has been interrupted and will exit. (org.apache.kafka.common.security.kerberos.KerberosLogin)
 ```
