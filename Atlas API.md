@@ -35,4 +35,31 @@ kinit -kt /etc/security/keytabs/ambari-infra-solr.service.keytab $(klist -kte /e
 curl -ivk --negotiate -u : "http://$(hostname -f):8886/solr/admin/collections?action=CLUSTERSTATUS&wt=json&indent=on"
 ```
 
-#### 5. 
+#### 5. Atlas-Kafka commands
+1. Describe ATLAS_HOOK topic:
+```bash
+/usr/hdp/current/kafka-broker/bin/kafka-topics.sh --describe --zookeeper `hostname -f`:2181 --topic ATLAS_HOOK
+```
+2. Describe ATLAS_ENTITIES topic:
+```bash
+/usr/hdp/current/kafka-broker/bin/kafka-topics.sh --describe --zookeeper `hostname -f`:2181 --topic ATLAS_ENTITIES
+```
+3. Describe _atlas_ consumer group (to check current consumer lag):
+* Without Kerberos:
+```bash
+/usr/hdp/current/kafka-broker/bin/kafka-consumer-groups.sh  --bootstrap-server `hostname -f`:6667 --describe --group atlas
+```
+* With Kerberos (HDP-2.6.x):
+```bash
+/usr/hdp/current/kafka-broker/bin/kafka-consumer-groups.sh  --bootstrap-server `hostname -f`:6667 --describe --group atlas --security-protocol <kafka-security-protocol>
+```
+> Example:
+```bash
+/usr/hdp/current/kafka-broker/bin/kafka-consumer-groups.sh  --bootstrap-server `hostname -f`:6667 --describe --group atlas --security-protocol SASL_PLAINTEXT
+```
+* With Kerberos (HDP-3.x):
+```bash
+/usr/hdp/current/kafka-broker/bin/kafka-consumer-groups.sh  --bootstrap-server `hostname -f`:6667 --describe --group atlas --command-config cluster.config
+cat cluster.config
+security.inter.broker.protocol=SASL_PLAINTEXT
+```
