@@ -5,7 +5,7 @@
 curl -u admin -X GET -H 'Content-Type: application/json' -H 'Cache-Control: no-cache' http://$(hostname -f):21000/api/atlas/admin/metrics
 ```
 
-Example
+> Example
 ```bash
 curl -u admin -X GET -H 'Content-Type: application/json' -H 'Cache-Control: no-cache' http://c1232-node3.coelab.cloudera.com:21000/api/atlas/admin/metrics
 ```
@@ -15,7 +15,7 @@ curl -u admin -X GET -H 'Content-Type: application/json' -H 'Cache-Control: no-c
 curl -u admin -X GET  --header 'Accept: application/json;charset=UTF-8' "http://$(hostname -f):21000/api/atlas/v2/search/basic?classification=<tag>&typeName=<entity-type>"
 ```
 
-Example:
+> Example:
 ```bash
 curl -u admin -X GET  --header 'Accept: application/json;charset=UTF-8' "http://$(hostname -f):21000/api/atlas/v2/search/basic?classification=NewTag&typeName=hive_column"
 ```
