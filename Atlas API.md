@@ -83,3 +83,9 @@ TOPIC           PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSU
 ATLAS_HOOK      0          12              12              0               consumer-1-367dc678-f9cd-4e8b-a0c7-0cc154a13b72 /172.25.36.16   consumer-1
 [2020-05-03 12:06:32,999] WARN [Principal=null]: TGT renewal thread has been interrupted and will exit. (org.apache.kafka.common.security.kerberos.KerberosLogin)
 ```
+4. Dump messages from ATLAS_HOOK Kafka topic to standard output/text file
+```bash
+/usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --bootstrap-server `hostname -f`:6667 --topic ATLAS_HOOK --command-config config.properties --from-beginning > /tmp/atlas_hook_kafka_dump.txt
+cat cluster.config
+security.protocol=SASL_PLAINTEXT
+```
