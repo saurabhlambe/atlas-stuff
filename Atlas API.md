@@ -36,7 +36,7 @@ curl -ivk --negotiate -u : "http://$(hostname -f):8886/solr/admin/collections?ac
 ```
 
 #### 5. Atlas-Kafka commands
-##### 1. Describe ATLAS_HOOK topic
+##### a. Describe ATLAS_HOOK topic
 ```bash
 /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --describe --zookeeper `hostname -f`:2181 --topic ATLAS_HOOK
 ```
@@ -46,7 +46,7 @@ curl -ivk --negotiate -u : "http://$(hostname -f):8886/solr/admin/collections?ac
 Topic:ATLAS_HOOK	PartitionCount:1	ReplicationFactor:1	Configs:
 	Topic: ATLAS_HOOK	Partition: 0	Leader: 1001	Replicas: 1001	Isr: 1001
 ```
-##### 2. Describe ATLAS_ENTITIES topic
+##### b. Describe ATLAS_ENTITIES topic
 ```bash
 /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --describe --zookeeper `hostname -f`:2181 --topic ATLAS_ENTITIES
 ```
@@ -56,7 +56,7 @@ Topic:ATLAS_HOOK	PartitionCount:1	ReplicationFactor:1	Configs:
 Topic:ATLAS_ENTITIES	PartitionCount:1	ReplicationFactor:1	Configs:
 	Topic: ATLAS_ENTITIES	Partition: 0	Leader: 1001	Replicas: 1001	Isr: 1001
 ```
-##### 3. Describe _atlas_ consumer group (to check current consumer lag)
+##### c. Describe _atlas_ consumer group (to check current consumer lag)
 * Without Kerberos
 ```bash
 /usr/hdp/current/kafka-broker/bin/kafka-consumer-groups.sh  --bootstrap-server `hostname -f`:6667 --describe --group atlas
@@ -85,7 +85,7 @@ TOPIC           PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSU
 ATLAS_HOOK      0          12              12              0               consumer-1-367dc678-f9cd-4e8b-a0c7-0cc154a13b72 /172.25.36.16   consumer-1
 [2020-05-03 12:06:32,999] WARN [Principal=null]: TGT renewal thread has been interrupted and will exit. (org.apache.kafka.common.security.kerberos.KerberosLogin)
 ```
-##### 4. Dump messages from ATLAS_HOOK Kafka topic to standard output/text file
+##### d. Dump messages from ATLAS_HOOK Kafka topic to standard output/text file
 ```bash
 /usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --bootstrap-server `hostname -f`:6667 --topic ATLAS_HOOK --command-config config.properties --from-beginning > /tmp/atlas_hook_kafka_dump.txt
 
