@@ -1,4 +1,4 @@
-# Important API/commands to fetch information and/or troubleshoot
+# Important API/commands to fetch information and/or troubleshoot Atlas
 
 #### 1. Fetch Atlas metrics
 ```bash
@@ -86,6 +86,7 @@ ATLAS_HOOK      0          12              12              0               consu
 4. Dump messages from ATLAS_HOOK Kafka topic to standard output/text file
 ```bash
 /usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --bootstrap-server `hostname -f`:6667 --topic ATLAS_HOOK --command-config config.properties --from-beginning > /tmp/atlas_hook_kafka_dump.txt
+
 cat cluster.config
 security.protocol=SASL_PLAINTEXT
 ```
