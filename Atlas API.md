@@ -94,7 +94,7 @@ cat cluster.config
 security.protocol=SASL_PLAINTEXT
 ```
 
-#### 5. Check Atlas version
+#### 6. Check Atlas version
 ```bash
 curl -v -u admin http://localhost:21000/api/atlas/admin/version
 ```
