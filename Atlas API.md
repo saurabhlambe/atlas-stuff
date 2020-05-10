@@ -71,7 +71,7 @@ Topic:ATLAS_ENTITIES	PartitionCount:1	ReplicationFactor:1	Configs:
 ```
 * With Kerberos (HDP-3.x)
 ```bash
-/usr/hdp/current/kafka-broker/bin/kafka-consumer-groups.sh  --bootstrap-server `hostname -f`:6667 --describe --group atlas --command-config cluster.config
+/usr/hdp/current/kafka-broker/bin/kafka-consumer-groups.sh  --bootstrap-server `hostname -f`:6667 --describe --group atlas --consumer.config cluster.config
 
 # Contents of cluster.config file
 cat cluster.config
@@ -79,7 +79,7 @@ security.protocol=SASL_PLAINTEXT
 ```
 > Expected result
 ```bash
-/usr/hdp/current/kafka-broker/bin/kafka-consumer-groups.sh  --bootstrap-server `hostname -f`:6667 --describe --group atlas --command-config cluster.config
+/usr/hdp/current/kafka-broker/bin/kafka-consumer-groups.sh  --bootstrap-server `hostname -f`:6667 --describe --group atlas --consumer.config cluster.config
 
 TOPIC           PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                     HOST            CLIENT-ID
 ATLAS_HOOK      0          12              12              0               consumer-1-367dc678-f9cd-4e8b-a0c7-0cc154a13b72 /172.25.36.16   consumer-1
@@ -87,7 +87,7 @@ ATLAS_HOOK      0          12              12              0               consu
 ```
 ##### d. Dump messages from ATLAS_HOOK Kafka topic to standard output/text file
 ```bash
-/usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --bootstrap-server `hostname -f`:6667 --topic ATLAS_HOOK --command-config config.properties --from-beginning > /tmp/atlas_hook_kafka_dump.txt
+/usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --bootstrap-server `hostname -f`:6667 --topic ATLAS_HOOK --consumer.config config.properties --from-beginning > /tmp/atlas_hook_kafka_dump.txt
 
 # Contents of cluster.config file
 cat cluster.config
