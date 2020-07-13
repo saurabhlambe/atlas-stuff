@@ -6,8 +6,8 @@ Atlas metadata is stored in the form of HBase tables (_atlas_janus_ or _atlas_ti
 - Run the below commands as 'hbase' user with TGT (if Kerberos) to export HBase tables into HDFS directory from step 1.
 
 ```bash
-# hbase org.apache.hadoop.hbase.mapreduce.Export "atlas_janus" "/<folder>/atlas_janus"
-# hbase org.apache.hadoop.hbase.mapreduce.Export "ATLAS_ENTITY_AUDIT_EVENTS" "/<folder>/ATLAS_ENTITY_AUDIT_EVENTS"
+hbase org.apache.hadoop.hbase.mapreduce.Export "atlas_janus" "/<folder>/atlas_janus"
+hbase org.apache.hadoop.hbase.mapreduce.Export "ATLAS_ENTITY_AUDIT_EVENTS" "/<folder>/ATLAS_ENTITY_AUDIT_EVENTS"
 ```
 
 Note: Above commands will backup the data from HBase table into HDFS.
@@ -20,19 +20,19 @@ Note: Above commands will backup the data from HBase table into HDFS.
 
 Use following syntax to run Solr backup API using curl command:
 ```bash
-# http://<infra-solr-host:port>/solr/admin/collections?action=BACKUP&name=myBackupName&collection=<myCollectionName>&location=/path/to/my/shared/drive
+http://<infra-solr-host:port>/solr/admin/collections?action=BACKUP&name=myBackupName&collection=<myCollectionName>&location=/path/to/my/shared/drive
 ```
 For Example:
 ```bash
-# curl -ivk "https://host1.example.com:8886/solr/admin/collections?action=BACKUP&name=vertex_index_bkp&collection=vertex_index&location=/opt/vertex_index_backup"
-# curl -ivk "https://host1.example.com:8886/solr/admin/collections?action=BACKUP&name=edge_index_bkp&collection=edge_index&location=/opt/edge_index_backup"
-# curl -ivk "https://host1.example.com:8886/solr/admin/collections?action=BACKUP&name=fulltext_index_bkp&collection=fulltext_index&location=/opt/fulltext_index_backup"
+curl -ivk "https://host1.example.com:8886/solr/admin/collections?action=BACKUP&name=vertex_index_bkp&collection=vertex_index&location=/opt/vertex_index_backup"
+curl -ivk "https://host1.example.com:8886/solr/admin/collections?action=BACKUP&name=edge_index_bkp&collection=edge_index&location=/opt/edge_index_backup"
+curl -ivk "https://host1.example.com:8886/solr/admin/collections?action=BACKUP&name=fulltext_index_bkp&collection=fulltext_index&location=/opt/fulltext_index_backup"
 ```
 #### Solr 5.5
 ```bash
-# curl -ivk "http://host1.example.com:8886/solr/vertex_index/replication?command=backup&name=vertex_index_backup&location=/opt/vertex_index"
-# curl -ivk "http://host1.example.com:8886/solr/edge_index/replication?command=backup&name=edge_index_backup&location=/opt/edge_index"
-# curl -ivk "http://host1.example.com:8886/solr/fulltext_index/replication?command=backup&name=fulltext_index_backup&location=/opt/fulltext_index"
+curl -ivk "http://host1.example.com:8886/solr/vertex_index/replication?command=backup&name=vertex_index_backup&location=/opt/vertex_index"
+curl -ivk "http://host1.example.com:8886/solr/edge_index/replication?command=backup&name=edge_index_backup&location=/opt/edge_index"
+curl -ivk "http://host1.example.com:8886/solr/fulltext_index/replication?command=backup&name=fulltext_index_backup&location=/opt/fulltext_index"
 ```
 Note:
 - If the cluster is kerberized, then run kinit against Solr keytab first and add **"--negotiate -u :"** after -ivk flag in the above curl commands.
