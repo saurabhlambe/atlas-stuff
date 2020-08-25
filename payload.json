@@ -1,0 +1,11 @@
+{
+   "classification": {
+     "entityStatus": "ACTIVE",
+     "propagate": true,
+     "removePropagationsOnEntityDelete": true,
+     "attributes": {},
+     "typeName": "unique"
+   },
+   "entityGuids": ["f3489747-e1e4-4ca2-a0ec-5b4e7cf5c0ed",
+		"99d6da0c-f82d-4476-9592-16f38d818ba3"]
+}
