@@ -103,3 +103,8 @@ curl -v -u admin http://localhost:21000/api/atlas/admin/version
 curl -v -u admin http://localhost:21000/api/atlas/admin/version
 {"Description":"Metadata Management and Data Governance Platform over Hadoop","Revision":"9b84b9688b91afe3fc58b1a16ecdaa0c190910fa","Version":"1.1.0.3.1.4.0-315","Name":"apache-atlas"}
 ```
+
+### 7. Bulk API to associate a tag/classification to multiple entities
+```bash
+curl -vv -u admin:hadoop12345! -X POST --header 'Content-Type: application/json;charset=UTF-8' --header 'Accept: application/json' -d @payload.json 'http://localhost:21000/api/atlas/v2/entity/bulk/classification'
+```
