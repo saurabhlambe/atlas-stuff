@@ -8,7 +8,9 @@ hbase shell
 hbase> snapshot 'atlas_janus', 'atlas_janus_snapshot_10092020'
 ```
 b. Export Snapshot from server terminal:
-```hbase org.apache.hadoop.hbase.snapshot.ExportSnapshot -snapshot 'atlas_janus_snapshot_10092020' -copy-to /tmp/hbasebackup/```
+```bash
+hbase org.apache.hadoop.hbase.snapshot.ExportSnapshot -snapshot 'atlas_janus_snapshot_10092020' -copy-to /tmp/hbasebackup/
+```
 c. The contents of '/tmp/hbasebackup/' contain the table backup.
 
 Note: the '.hbase-snapshot' directory is also needed to restore the HBase snapshot.
