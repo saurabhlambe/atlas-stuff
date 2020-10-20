@@ -5,11 +5,13 @@ Atlas metadata is stored in the form of HBase tables (_atlas_janus_ or _atlas_ti
 a. Create HBase table snapshot: 
 ```bash
 hbase shell
-hbase> snapshot 'atlas_janus', 'atlas_janus_snapshot_10092020'
+hbase> snapshot 'atlas_janus', 'atlas_janus_snapshot_<insert-date-here>'
+hbase> snapshot 'ATLAS_ENTITY_AUDIT_EVENTS', 'atlas_entity_audit_events_snap_<insert-date-here>'
 ```
 b. Export Snapshot from server terminal:
 ```bash
-hbase org.apache.hadoop.hbase.snapshot.ExportSnapshot -snapshot 'atlas_janus_snapshot_10092020' -copy-to /tmp/hbasebackup/
+hbase org.apache.hadoop.hbase.snapshot.ExportSnapshot -snapshot 'atlas_janus_snapshot_<insert-date-here>' -copy-to /tmp/hbasebackup/
+hbase org.apache.hadoop.hbase.snapshot.ExportSnapshot -snapshot 'atlas_entity_audit_events_snap_<insert-date-here>' -copy-to /tmp/hbasebackup/
 ```
 c. The contents of '/tmp/hbasebackup/' contain the table backup.
 
