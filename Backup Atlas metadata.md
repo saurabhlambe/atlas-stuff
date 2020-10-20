@@ -2,15 +2,16 @@
 Atlas metadata is stored in the form of HBase tables (_atlas_janus_ or _atlas_titan_[1] and _ATLAS_ENTITY_AUDIT_EVENTS_) and Solr collections (_vertex_index_, _fulltext_index_, and _edge_index_).
 
 ## Backup Hbase tables
-- Create a folder in HDFS and set hbase as its owner.
-- Run the below commands as 'hbase' user with TGT (if Kerberos) to export HBase tables into HDFS directory from step 1.
-
+a. Create HBase table snapshot: 
 ```bash
-hbase org.apache.hadoop.hbase.mapreduce.Export "atlas_janus" "/<folder>/atlas_janus"
-hbase org.apache.hadoop.hbase.mapreduce.Export "ATLAS_ENTITY_AUDIT_EVENTS" "/<folder>/ATLAS_ENTITY_AUDIT_EVENTS"
+ hbase shell
+	hbase> snapshot 'atlas_janus', 'atlas_janus_snapshot_10092020'
 ```
+b. Export Snapshot from server terminal:
+```hbase org.apache.hadoop.hbase.snapshot.ExportSnapshot -snapshot 'atlas_janus_snapshot_10092020' -copy-to /tmp/hbasebackup/```
+c. The contents of '/tmp/hbasebackup/' contain the table backup.
 
-Note: Above commands will backup the data from HBase table into HDFS.
+Note: the '.hbase-snapshot' directory is also needed to restore the HBase snapshot.
 
 ## Backup Solr collections from Ambari Infra Solr
 - In addition to HBase tables, Atlas data is stored in 3 Solr collections: _vertex_index_, _fulltext_index_, and _edge_index_. These need to be backed up from Ambari Infra Solr.
