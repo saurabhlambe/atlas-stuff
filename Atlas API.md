@@ -89,8 +89,8 @@ ATLAS_HOOK      0          12              12              0               consu
 ```bash
 /usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --bootstrap-server `hostname -f`:6667 --topic ATLAS_HOOK --consumer.config config.properties --from-beginning > /tmp/atlas_hook_kafka_dump.txt
 
-# Contents of cluster.config file
-cat cluster.config
+# Contents of config.properties file
+cat config.properties
 security.protocol=SASL_PLAINTEXT
 ```
 
