@@ -103,3 +103,13 @@ curl -v -u admin http://localhost:21000/api/atlas/admin/version
 curl -v -u admin http://localhost:21000/api/atlas/admin/version
 {"Description":"Metadata Management and Data Governance Platform over Hadoop","Revision":"9b84b9688b91afe3fc58b1a16ecdaa0c190910fa","Version":"1.1.0.3.1.4.0-315","Name":"apache-atlas"}
 ```
+
+#### 7. Atlas Export API
+This API exports a Hive database in json format.
+```bash
+curl -X POST -u admin:hadoop12345! -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d '{
+    "itemsToExport": [
+       { "typeName": "hive_db", "uniqueAttributes": { "qualifiedName": "<db-qualified>" } }
+    ]
+}' "https://<atlas-server>:21443/api/atlas/admin/export" > export.zip
+```
