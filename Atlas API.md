@@ -86,6 +86,7 @@ ATLAS_HOOK      0          12              12              0               consu
 [2020-05-03 12:06:32,999] WARN [Principal=null]: TGT renewal thread has been interrupted and will exit. (org.apache.kafka.common.security.kerberos.KerberosLogin)
 ```
 ##### d. Dump messages from ATLAS_HOOK Kafka topic to standard output/text file
+* With Kerberos (HDP-3.x)
 ```bash
 /usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --bootstrap-server `hostname -f`:6667 --topic ATLAS_HOOK --consumer.config config.properties --from-beginning > /tmp/atlas_hook_kafka_dump.txt
 
@@ -93,7 +94,10 @@ ATLAS_HOOK      0          12              12              0               consu
 cat config.properties
 security.protocol=SASL_PLAINTEXT
 ```
-
+* With Kerberos (HDP-2.x)
+```bash
+/usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --bootstrap-server `hostname -f`:6667 --topic ATLAS_HOOK --security-protocol PLAINTEXTSASL --from-beginning > /tmp/atlas_hook_kafka_dump.txt
+```
 #### 6. Check Atlas version
 ```bash
 curl -v -u admin http://localhost:21000/api/atlas/admin/version
