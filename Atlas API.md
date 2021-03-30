@@ -96,8 +96,9 @@ security.protocol=SASL_PLAINTEXT
 ```
 * With Kerberos (HDP-2.x)
 ```bash
-/usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --bootstrap-server `hostname -f`:6667 --topic ATLAS_HOOK --security-protocol PLAINTEXTSASL --from-beginning > /tmp/atlas_hook_kafka_dump.txt
+/usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --bootstrap-server `hostname -f`:6667 --topic ATLAS_HOOK --security-protocol <kafka-protocol> --from-beginning > /tmp/atlas_hook_kafka_dump.txt
 ```
+- In Ambari > Kafka > Configs > filter with 'protocol' to find the protocol being used by Kafka and replace <kafka-protocol> accordingly.
 #### 6. Check Atlas version
 ```bash
 curl -v -u admin http://localhost:21000/api/atlas/admin/version
