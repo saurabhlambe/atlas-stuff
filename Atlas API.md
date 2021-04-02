@@ -118,3 +118,10 @@ curl -X POST -u admin:hadoop12345! -H "Content-Type: application/json" -H "Cache
     ]
 }' "https://<atlas-server>:21443/api/atlas/admin/export" > export.zip
 ```
+
+#### 8. Add a label to an Atlas entity*
+```bash
+curl -L -X POST 'http://atlas-server:31000/api/atlas/v2/entity/guid/{guid}/labels' -H 'Content-Type: application/json' --data-raw '["label1","label2","label3"]' -u {username}
+```
+
+> * Only supported in Atlas 2.0
