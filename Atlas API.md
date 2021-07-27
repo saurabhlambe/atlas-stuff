@@ -74,8 +74,9 @@ Topic:ATLAS_ENTITIES	PartitionCount:1	ReplicationFactor:1	Configs:
 /usr/hdp/current/kafka-broker/bin/kafka-consumer-groups.sh  --bootstrap-server `hostname -f`:6667 --describe --group atlas --command-config cluster.config
 
 # Contents of cluster.config file
-cat cluster.config
+cat > cluster.config
 security.protocol=SASL_PLAINTEXT
+CTRL+D
 ```
 > Expected result
 ```bash
