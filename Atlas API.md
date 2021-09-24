@@ -1,6 +1,11 @@
 # Important API/commands to fetch information and/or troubleshoot Atlas
 
-#### 1. Fetch Atlas metrics
+#### 1. Fetch Atlas server status
+```bash
+curl -u admin -X GET -H 'Content-Type: application/json' -H 'Cache-Control: no-cache' http://$(hostname -f):21000/api/atlas/admin/status
+```
+
+#### 2. Fetch Atlas metrics
 ```bash
 curl -u admin -X GET -H 'Content-Type: application/json' -H 'Cache-Control: no-cache' http://$(hostname -f):21000/api/atlas/admin/metrics
 ```
@@ -10,7 +15,7 @@ curl -u admin -X GET -H 'Content-Type: application/json' -H 'Cache-Control: no-c
 curl -u admin -X GET -H 'Content-Type: application/json' -H 'Cache-Control: no-cache' http://c1232-node3.coelab.cloudera.com:21000/api/atlas/admin/metrics
 ```
 
-#### 2. Basic search with entity type
+#### 3. Basic search with entity type
 ```bash
 curl -u admin -X GET  --header 'Accept: application/json;charset=UTF-8' "http://$(hostname -f):21000/api/atlas/v2/search/basic?&typeName=<entity-type>" | python -m json.tool
 ```
@@ -19,7 +24,7 @@ curl -u admin -X GET  --header 'Accept: application/json;charset=UTF-8' "http://
 curl -u admin -X GET  --header 'Accept: application/json;charset=UTF-8' "http://$(hostname -f):21000/api/atlas/v2/search/basic?&typeName=hive_table" | python -m json.tool
 ```
 
-#### 3. Basic search type + tag
+#### 4. Basic search type + tag
 ```bash
 curl -u admin -X GET  --header 'Accept: application/json;charset=UTF-8' "http://$(hostname -f):21000/api/atlas/v2/search/basic?classification=<tag>&typeName=<entity-type>"
 ```
@@ -29,13 +34,13 @@ curl -u admin -X GET  --header 'Accept: application/json;charset=UTF-8' "http://
 curl -u admin -X GET  --header 'Accept: application/json;charset=UTF-8' "http://$(hostname -f):21000/api/atlas/v2/search/basic?classification=NewTag&typeName=hive_column"
 ```
 
-#### 4. Fetch Solr collection status
+#### 5. Fetch Solr collection status
 ```bash
 kinit -kt /etc/security/keytabs/ambari-infra-solr.service.keytab $(klist -kte /etc/security/keytabs/ambari-infra-solr.service.keytab | awk 'NR==4{print $4}')
 curl -ivk --negotiate -u : "http://$(hostname -f):8886/solr/admin/collections?action=CLUSTERSTATUS&wt=json&indent=on"
 ```
 
-#### 5. Atlas-Kafka commands
+#### 6. Atlas-Kafka commands
 ##### a. Describe ATLAS_HOOK topic
 ```bash
 /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --describe --zookeeper `hostname -f`:2181 --topic ATLAS_HOOK
@@ -100,7 +105,7 @@ security.protocol=SASL_PLAINTEXT
 /usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --bootstrap-server `hostname -f`:6667 --topic ATLAS_HOOK --security-protocol <kafka-protocol> --from-beginning > /tmp/atlas_hook_kafka_dump.txt
 ```
 - In Ambari > Kafka > Configs > filter with 'protocol' to find the protocol being used by Kafka and replace <kafka-protocol> accordingly.
-#### 6. Check Atlas version
+#### 7. Check Atlas version
 ```bash
 curl -v -u admin http://localhost:21000/api/atlas/admin/version
 ```
@@ -110,7 +115,7 @@ curl -v -u admin http://localhost:21000/api/atlas/admin/version
 {"Description":"Metadata Management and Data Governance Platform over Hadoop","Revision":"9b84b9688b91afe3fc58b1a16ecdaa0c190910fa","Version":"1.1.0.3.1.4.0-315","Name":"apache-atlas"}
 ```
 
-#### 7. Atlas Export API
+#### 8. Atlas Export API
 This API exports a Hive database in json format.
 ```bash
 curl -X POST -u admin:hadoop12345! -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d '{
@@ -120,9 +125,14 @@ curl -X POST -u admin:hadoop12345! -H "Content-Type: application/json" -H "Cache
 }' "https://<atlas-server>:21443/api/atlas/admin/export" > export.zip
 ```
 
-#### 8. Add a label to an Atlas entity*
+#### 9. Add a label to an Atlas entity*
 ```bash
 curl -L -X POST 'http://atlas-server:31000/api/atlas/v2/entity/guid/{guid}/labels' -H 'Content-Type: application/json' --data-raw '["label1","label2","label3"]' -u {username}
+```
+
+#### 10. Fetch lineage of an entity
+```
+curl -u admin -X GET  --header 'Accept: application/json;charset=UTF-8' http://$(hostname -f):21000/api/atlas/v2/lineage/{guid}
 ```
 
 > * Only supported in Atlas 2.0
